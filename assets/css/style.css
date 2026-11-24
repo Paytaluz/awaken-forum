@@ -51,7 +51,7 @@ ul{list-style:none}
 /* Section */
 .section{padding:3rem 0}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.75rem;border-top:1px solid var(--border);padding-top:1.75rem}
-.section-head h2{font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.section-head h2{font-size:14px;font-weight:500;color:var(--text-secondary)}
 .section-head span{font-size:13px;color:var(--text-secondary)}
 
 /* Article cards */
@@ -93,9 +93,6 @@ ul{list-style:none}
 .prose blockquote{border-left:3px solid var(--text);padding-left:1.25rem;font-size:1.2rem;font-weight:600;line-height:1.5;margin:2rem 0;max-width:620px}
 
 .more-from{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
-
-/* Welcome / intro */
-.eyebrow{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--text-secondary);margin-bottom:.75rem}
 .intro p{font-size:1.1rem;line-height:1.75;max-width:760px}
 
 /* Bento grid (homepage "Latest") */
