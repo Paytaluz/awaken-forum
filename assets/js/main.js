@@ -10,24 +10,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var cards = document.querySelectorAll('.bento .card, .spotlight-grid .card');
   var pills = document.querySelectorAll('.pills .pill');
-  var cards = document.querySelectorAll('.grid .card');
-  if (pills.length && cards.length) {
-    pills.forEach(function (pill) {
-      pill.addEventListener('click', function () {
-        var category = pill.getAttribute('data-category');
-        var alreadyActive = pill.classList.contains('is-active');
-        pills.forEach(function (p) { p.classList.remove('is-active'); });
+  if (!cards.length || !pills.length) return;
 
-        if (alreadyActive) {
-          cards.forEach(function (card) { card.style.display = ''; });
-          return;
-        }
-        pill.classList.add('is-active');
-        cards.forEach(function (card) {
-          card.style.display = (card.getAttribute('data-category') === category) ? '' : 'none';
-        });
-      });
+  function applyFilter(tag) {
+    pills.forEach(function (p) {
+      p.classList.toggle('is-active', tag && p.getAttribute('data-tag') === tag);
+    });
+    cards.forEach(function (card) {
+      var tags = (card.getAttribute('data-tags') || '').split(' ');
+      card.style.display = (!tag || tags.indexOf(tag) !== -1) ? '' : 'none';
     });
   }
+
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      var tag = pill.getAttribute('data-tag');
+      var alreadyActive = pill.classList.contains('is-active');
+      applyFilter(alreadyActive ? null : tag);
+    });
+  });
+
+  document.querySelectorAll('.nav-tag').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var tag = link.getAttribute('data-tag');
+      e.preventDefault();
+      applyFilter(tag);
+      document.getElementById('latest').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 });
